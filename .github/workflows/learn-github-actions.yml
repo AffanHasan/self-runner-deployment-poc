@@ -8,7 +8,10 @@ jobs:
   affan-local-machine-specific-job:
     runs-on: [self-hosted, macOS, X64, affan-local-machine]
     steps:
-      - run: touch ~/affan-local-test-file01
+      - run: cd ~/engineering-stuff/github-actions/self-runner-deployment-poc/
+      - run: git checkout local-machines
+      - run: git pull origin local-machines
+      - run: touch sample-file
   danish-local-machine-specific-job:
     runs-on: [self-hosted, macOS, X64, danish-local-machine]
     steps:
