@@ -1,6 +1,9 @@
 name: local-machines-self-hosted-runners
 run-name: Local Machines Self Hosted Runners Workflow
-on: [push]
+on:
+  push:
+    branches:
+      - local-machines
 jobs:
   affan-local-machine-specific-job:
     runs-on: [self-hosted, macOS, X64, affan-local-machine]
