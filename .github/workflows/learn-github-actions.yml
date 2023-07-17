@@ -8,7 +8,8 @@ jobs:
   affan-local-machine-specific-job:
     runs-on: [self-hosted, macOS, X64, affan-local-machine]
     steps:
-      - run: cd ~/engineering-stuff/github-actions/self-runner-deployment-poc/ && git checkout local-machines && git pull origin local-machines && touch sample-file
+      - run: cd ~/engineering-stuff/github-actions/self-runner-deployment-poc/ && git checkout local-machines && git pull origin local-machines && touch sample-file && touch another-file
+>>>>>>> 63905a4 (Added sample file to test branch specific workflow trigger)
   danish-local-machine-specific-job:
     runs-on: [self-hosted, macOS, X64, danish-local-machine]
     steps:
