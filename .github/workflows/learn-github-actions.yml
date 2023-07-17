@@ -1,5 +1,5 @@
-name: learn-github-actions
-run-name: ${{ github.actor }} is learning GitHub Actions
+name: local-machines-self-hosted-runners
+run-name: Local Machines Self Hosted Runners Workflow
 on: [push]
 jobs:
   affan-local-machine-specific-job:
