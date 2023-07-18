@@ -1,0 +1,12 @@
+name: local-machines-self-hosted-runners
+run-name: Local Machines Self Hosted Runners Workflow
+on: workflow_dispatch
+jobs:
+  affan-local-machine-rollback-job:
+    runs-on: [self-hosted, macOS, X64, affan-local-machine]
+    steps:
+      - run: cd ~/self-runner-deployment-poc/ && git fetch origin local-machines && git checkout local-machines && git pull origin local-machines && chmod +x ./rollback-script && ./rollback-script ahassan
+  danish-local-machine-rollback-job:
+    runs-on: [self-hosted, macOS, X64, danish-local-machine]
+    steps:
+      - run: cd ~/self-runner-deployment-poc/ && git fetch origin local-machines && git checkout local-machines && git pull origin local-machines && chmod +x ./rollback-script && ./rollback-script mdanish
