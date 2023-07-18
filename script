@@ -44,6 +44,11 @@ public class App
             	} catch (IOException e) {
             		throw new RuntimeException(e);
            	}
+	        try {
+        	    Files.createDirectory(bkpPath);
+        	} catch (IOException e) {
+            	    throw new RuntimeException(e);
+        	}
 	    } else {
 	        try {
         	    Files.createDirectory(bkpPath);
