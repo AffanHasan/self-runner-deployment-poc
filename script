@@ -15,7 +15,7 @@ public class App
     public static void main( String[] args ) {
 	    final String userName = args[0];
         // Delete Create Backup Folder
-        Path bkpPath = Paths.get("/Users/" + userName + "/engineering-stuff/github-actions/self-runner-deployment-poc/backup/");
+        Path bkpPath = Paths.get("/Users/" + userName + "/self-runner-deployment-poc/backup/");
         try {
             Files.deleteIfExists(bkpPath);
             Files.createDirectory(bkpPath);
@@ -23,7 +23,7 @@ public class App
             throw new RuntimeException(e);
         }
         // Read CSV
-        try (final BufferedReader br = new BufferedReader(new FileReader("/Users/" + userName + "/engineering-stuff/github-actions/self-runner-deployment-poc/deployment-files.csv"))) {
+        try (final BufferedReader br = new BufferedReader(new FileReader("/Users/" + userName + "/self-runner-deployment-poc/deployment-files.csv"))) {
             String line;
             int index = 0;
             while ((line = br.readLine()) != null) {
@@ -34,7 +34,7 @@ public class App
 		    System.out.println(line);
                     String[] columns = line.split(",");
                     final String fileName = columns[0];
-                    final String projectPath = columns[1];
+                    final String projectPath = "/Users/" + userName + "/Periscope" columns[1];
 		    if ( columns.length == 3 ) {
                     	final String serviceName = columns[2];
 		    }
@@ -42,14 +42,14 @@ public class App
 		    System.out.println(Paths.get(String.format("%s%s", bkpPath, fileName)));
                     Files.copy(Paths.get(String.format("%s%s", projectPath, fileName)), Paths.get(String.format("%s/%s", bkpPath, fileName)), StandardCopyOption.REPLACE_EXISTING);
                     // move file from repo and paste into project folder
-                    Files.copy(Paths.get("/Users/" + userName + "/engineering-stuff/github-actions/self-runner-deployment-poc/" + fileName),
+                    Files.copy(Paths.get("/Users/" + userName + "/self-runner-deployment-poc/" + fileName),
                             Paths.get(projectPath + fileName), StandardCopyOption.REPLACE_EXISTING);
                     //TODO: Restart Services
                 }
             }
             // Backup CSV file
             final String csvFileName = "deployment-files.csv";
-            Files.copy(Paths.get("/Users/" + userName + "/engineering-stuff/github-actions/self-runner-deployment-poc/" + csvFileName),
+            Files.copy(Paths.get("/Users/" + userName + "/self-runner-deployment-poc/" + csvFileName),
                     Paths.get(String.format("%s/%s", bkpPath, csvFileName)));
         } catch (final FileNotFoundException e) {
             throw new RuntimeException(e);

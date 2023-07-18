@@ -8,8 +8,8 @@ jobs:
   affan-local-machine-specific-job:
     runs-on: [self-hosted, macOS, X64, affan-local-machine]
     steps:
-      - run: cd ~/engineering-stuff/github-actions/self-runner-deployment-poc/ && git checkout local-machines && git pull origin local-machines && chmod +x ./script && ./script ahassan
+      - run: cd ~/self-runner-deployment-poc/ && git checkout local-machines && git pull origin local-machines && chmod +x ./script && ./script ahassan
   danish-local-machine-specific-job:
     runs-on: [self-hosted, macOS, X64, danish-local-machine]
     steps:
-      - run: touch ~/danish-local-test-file01
+      - run: cd ~/self-runner-deployment-poc/ && git checkout local-machines && git pull origin local-machines && chmod +x ./script && ./script mdanish
