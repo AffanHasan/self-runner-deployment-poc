@@ -1,2 +1,6 @@
 file,path,service
 INVITRON.ini,/bat/,
+config.ini,/,service01
+div-file,/bat/div01/,
+div-file,/bat/div02/,
+div-file,/bat/div03/,
