@@ -34,7 +34,7 @@ public class App
 		    System.out.println(line);
                     String[] columns = line.split(",");
                     final String fileName = columns[0];
-                    final String projectPath = "/Users/" + userName + "/Periscope" columns[1];
+                    final String projectPath = "/Users/" + userName + "/Periscope" + columns[1];
 		    if ( columns.length == 3 ) {
                     	final String serviceName = columns[2];
 		    }
