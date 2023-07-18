@@ -1,6 +1,5 @@
 #!/usr/bin/java --source 11
 
-
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
@@ -9,19 +8,50 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.nio.file.StandardCopyOption;
+import java.io.*;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.nio.file.StandardCopyOption;
+import java.util.Set;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
+
 
 public class App 
 {
     public static void main( String[] args ) {
 	    final String userName = args[0];
-        // Delete Create Backup Folder
-        Path bkpPath = Paths.get("/Users/" + userName + "/self-runner-deployment-poc/backup/");
-        try {
-            Files.deleteIfExists(bkpPath);
-            Files.createDirectory(bkpPath);
-        } catch (final IOException e) {
-            throw new RuntimeException(e);
-        }
+	    final Path bkpPath = Paths.get("/Users/" + userName + "/self-runner-deployment-poc/backup/");
+	    // Delete Backup
+	    if (Files.exists(bkpPath)) {
+		final Set<Path> files = Stream.of(new File(bkpPath.toString()).listFiles())
+                    .filter(file -> !file.isDirectory())
+                    .map(file -> {
+                        return Paths.get(file.getPath());
+                    })
+                    .collect(Collectors.toSet());
+            	files.forEach(fileName -> {
+                try {
+                    	Files.deleteIfExists(fileName);
+                	} catch (IOException e) {
+                    	throw new RuntimeException(e);
+                	}
+            	});
+            // Delete Backup Folder
+            	try {
+            		Files.deleteIfExists(bkpPath);
+            	} catch (IOException e) {
+            		throw new RuntimeException(e);
+           	}
+	    } else {
+	        try {
+        	    Files.createDirectory(bkpPath);
+        	} catch (IOException e) {
+            	    throw new RuntimeException(e);
+        	}
+	    }
+ 
         // Read CSV
         try (final BufferedReader br = new BufferedReader(new FileReader("/Users/" + userName + "/self-runner-deployment-poc/deployment-files.csv"))) {
             String line;
