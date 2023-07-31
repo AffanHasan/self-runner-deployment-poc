@@ -1,5 +1,5 @@
-name: local-machines-self-hosted-runners
-run-name: Local Machines Self Hosted Runners Workflow
+name: local-machines-deployment-rollback
+run-name: Local Machines Deployment Roll Back
 on: workflow_dispatch
 jobs:
   affan-local-machine-rollback-job:

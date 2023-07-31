@@ -1,15 +1,12 @@
-name: local-machines-self-hosted-runners
-run-name: Local Machines Self Hosted Runners Workflow
-on:
-  push:
-    branches:
-      - local-machines
+name: local-machines-deployment
+run-name: Local Machines Deployment
+on: workflow_dispatch
 jobs:
-  affan-local-machine-specific-job:
+  affan-local-machine-deployment-job:
     runs-on: [self-hosted, macOS, X64, affan-local-machine]
     steps:
       - run: cd ~/self-runner-deployment-poc/ && git fetch origin local-machines && git checkout local-machines && git pull origin local-machines && chmod +x ./script && ./script ahassan
-  danish-local-machine-specific-job:
+  danish-local-machine-deployment-job:
     runs-on: [self-hosted, macOS, X64, danish-local-machine]
     steps:
       - run: cd ~/self-runner-deployment-poc/ && git fetch origin local-machines && git checkout local-machines && git pull origin local-machines && chmod +x ./script && ./script mdanish
